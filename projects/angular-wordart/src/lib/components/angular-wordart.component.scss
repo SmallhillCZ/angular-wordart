@@ -1,0 +1,9 @@
+@import "~node_modules/css-wordart/css/styles";
+
+:host {
+  display: inline-block;
+}
+// reset font size to 1em to be normally settable using css from outside
+.wordart {
+  font-size: 1em;
+}

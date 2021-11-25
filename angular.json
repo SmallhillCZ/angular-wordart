@@ -1,7 +1,113 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "fdc8b137-74e8-4e55-ba41-7b6b74d578e3"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "angular-wordart": {
+      "projectType": "library",
+      "root": "projects/angular-wordart",
+      "sourceRoot": "projects/angular-wordart/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/angular-wordart/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/angular-wordart/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/angular-wordart/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        }
+      }
+    },
+    "example-angular-wordart": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/example-angular-wordart",
+      "sourceRoot": "projects/example-angular-wordart/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/example-angular-wordart",
+            "index": "projects/example-angular-wordart/src/index.html",
+            "main": "projects/example-angular-wordart/src/main.ts",
+            "polyfills": "projects/example-angular-wordart/src/polyfills.ts",
+            "tsConfig": "projects/example-angular-wordart/tsconfig.app.json",
+            "assets": [
+              "projects/example-angular-wordart/src/favicon.ico",
+              "projects/example-angular-wordart/src/assets"
+            ],
+            "styles": ["projects/example-angular-wordart/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/example-angular-wordart/src/environments/environment.ts",
+                  "with": "projects/example-angular-wordart/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "example-angular-wordart:build:production"
+            },
+            "development": {
+              "browserTarget": "example-angular-wordart:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "example-angular-wordart:build"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "angular-wordart"
 }
