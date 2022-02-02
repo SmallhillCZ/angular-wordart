@@ -1,24 +1,30 @@
-# AngularWordart
+# Angular Wordart
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.0.
+Angular directives for the worderful [css-wordart](https://github.com/yershalom/css-wordart) library.
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name --project angular-wordart` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project angular-wordart`.
-> Note: Don't forget to add `--project angular-wordart` or else it will be added to the default project in your `angular.json` file. 
+```sh
+npm install angular-wordart
+```
 
-## Build
+## Usage
 
-Run `ng build angular-wordart` to build the project. The build artifacts will be stored in the `dist/` directory.
+```ts
 
-## Publishing
+import { Component } from '@angular/core';
+import { Themes } from 'angular-wordart';
 
-After building your library with `ng build angular-wordart`, go to the dist folder `cd dist/angular-wordart` and run `npm publish`.
+@Component({
+  selector: 'app-root',
+  template: `
+    <angular-wordart [theme]="theme">Test</angular-wordart>
+  `,
+})
+export class AppComponent {
 
-## Running unit tests
+  theme: Themes = Themes.rainbow;
 
-Run `ng test angular-wordart` to execute the unit tests via [Karma](https://karma-runner.github.io).
+}
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```
